@@ -2,7 +2,4 @@
 	<include file="$(find r2d2_gazebo)/launch/r2d2_world.launch" /> 
 
 	<include file="$(find r2d2_control)/launch/joint_state_controller.launch" /> 
-<!--
-	<include file="$(find r2d2_control)/launch/control.launch" /> 
--->
 </launch>
