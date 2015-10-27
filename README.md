@@ -1,6 +1,7 @@
-# r2d2
-
+r2d2
+####
 Simple model of the r2d2 robot for ROS/Gazebo.
+**********************************************
 
 To run the model:
 
