@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="gripper" params="name parent_link">
+
+		<link name="gripper_pole">
+			<visual>
+				<geometry>
+					<cylinder length="${polelen}" radius=".01"/>
+				</geometry>
+				<material name="Grey"/>
+				<origin xyz="${polelen/2} 0 0" rpy="0 ${pi/2} 0 "/>
+			</visual>
+			<collision>
+				<geometry>
+					<cylinder length="${polelen}" radius=".01"/>
+				</geometry>
+				<origin xyz="${polelen/2} 0 0" rpy="0 ${pi/2} 0 "/>
+			</collision>
+			<xacro:default_inertial mass=".05"/>
+		</link>
+		<xacro:gazebo_material link="gripper_pole" color="Grey"/>
+
+		<joint name="${parent_link}_gripper_pole_joint" type="prismatic">
+			<parent link="${parent_link}"/>
+			<child link="gripper_pole"/>
+			<limit effort="1000.0" lower="-${torsowidth*2-.02}" upper="0" velocity="0.5"/>
+			<origin rpy="0 0 0" xyz="${torsowidth-.01} 0 .2"/>
+			<limit effort="30" velocity="0.2"/>
+			<dynamics damping="0.0" friction="0.0"/>
+		</joint>
+
+		<transmission name="gripper_pole_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${parent_link}_gripper_pole_joint">
+				<hardwareInterface>PositionJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</joint>
+
+			<actuator name="gripper_pole_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<xacro:gripper_finger name="gripper_finger" parent_link="gripper_pole" prefix="left" reflect="1" />
+		<xacro:gripper_finger name="gripper_finger" parent_link="gripper_pole" prefix="right" reflect="-1" />
+
+	</xacro:macro>
+
+</robot>

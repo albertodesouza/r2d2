@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="head" params="name parent_link">
+
+		<link name="head">
+			<visual>
+				<geometry>
+					<sphere radius="${torsowidth}"/>
+				</geometry>
+				<material name="White"/>
+			</visual>
+			<collision>
+				<geometry>
+					<sphere radius="${torsowidth}"/>
+				</geometry>
+			</collision>
+			<xacro:default_inertial mass="2"/>
+		</link>
+		<xacro:gazebo_material link="head" color="White"/>
+
+		<link name="box">
+			<visual>
+				<geometry>
+					<box size=".08 .08 .08"/>
+				</geometry>
+				<material name="Blue"/>
+				<origin xyz="-0.04 0 0"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size=".08 .08 .08"/>
+				</geometry>
+			</collision>
+			<xacro:default_inertial mass="1"/>
+		</link>
+		<xacro:gazebo_material link="box" color="Blue"/>
+
+		<joint name="${parent_link}_head_joint" type="continuous">
+			<parent link="${parent_link}"/>
+			<child link="head"/>
+			<axis xyz="0 0 1"/>
+			<origin xyz="0 0 ${torsolen/2}"/>
+			<limit effort="30" velocity="1.0"/>
+			<dynamics damping="0.0" friction="0.0"/>
+		</joint>
+
+		<joint name="head_box_joint" type="fixed">
+			<parent link="head"/>
+			<child link="box"/>
+			<origin xyz="${.707*torsowidth+0.04} 0 ${.707*torsowidth}"/>
+		</joint>
+
+		<!-- This block connects the ${parent_link}_head_joint to an actuator (motor), which informs both
+		simulation and visualization of the robot -->
+		<transmission name="head_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${parent_link}_head_joint">
+				<hardwareInterface>PositionJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</joint>
+
+			<actuator name="$head_swivel_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+	</xacro:macro>
+
+</robot>

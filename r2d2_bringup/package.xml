@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+	<name>r2d2_bringup</name>
+	<version>0.0.1</version>
+	<description>R2D2 Bringup</description>
+
+	<maintainer email="alberto@lcad.inf.ufes.br">Alberto Ferreira De Souza</maintainer>
+
+	<license>BSD</license>
+	
+	<!-- <url type="repository">https://github.com/albertodesouza/r2d2</url> -->
+	<author email="alberto@lcad.inf.ufes.br">Alberto Ferreira De Souza</author>
+	
+	<buildtool_depend>catkin</buildtool_depend>
+	<run_depend>r2d2_description</run_depend>
+<!-- 
+	<run_depend>r2d2_control</run_depend>
+	<run_depend>r2d2_gazebo</run_depend>
+	<run_depend>r2d2_meshes</run_depend>
+	<run_depend>r2d2_moveit_config</run_depend>
+-->	
+	<export>  
+	</export>
+</package>

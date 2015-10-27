@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="gripper_finger" params="name parent_link prefix reflect">
+
+		<link name="${prefix}_gripper_finger">
+			<visual>
+				<origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0 0 0"/>
+				<geometry>
+					<mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.dae"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.dae"/>
+				</geometry>
+				<origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0 0 0"/>
+			</collision>
+			<xacro:default_inertial mass=".05"/>
+		</link>
+
+		<link name="${prefix}_gripper_finger_tip">
+			<visual>
+				<origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0.09137 0.00495 0"/>
+				<geometry>
+					<mesh filename="package://pr2_description/meshes/gripper_v0/l_finger_tip.dae"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://pr2_description/meshes/gripper_v0/l_finger_tip.dae"/>
+				</geometry>
+				<origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0.09137 0.00495 0"/>
+			</collision>
+			<xacro:default_inertial mass=".05"/>
+		</link>
+
+		<joint name="${prefix}_gripper_finger_joint" type="revolute">
+			<axis xyz="0 0 ${reflect}"/>
+			<limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+			<origin rpy="0 0 0" xyz="${polelen} ${reflect*0.01} 0"/>
+			<parent link="${parent_link}"/>
+			<child link="${prefix}_gripper_finger"/>
+			<limit effort="30" velocity="1.0"/>
+			<dynamics damping="0.0" friction="0.0"/>
+		</joint>
+
+		<joint name="${prefix}_gripper_finger_tip_joint" type="fixed">
+			<parent link="${prefix}_gripper_finger"/>
+			<child link="${prefix}_gripper_finger_tip"/>
+		</joint>
+
+		<transmission name="${prefix}_gripper_finger_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}_gripper_finger_joint">
+				<hardwareInterface>PositionJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</joint>
+
+			<actuator name="${prefix}_gripper_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+	</xacro:macro>
+
+</robot>

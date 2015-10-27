@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="gazebo_material" params="link color">
+		<gazebo reference="${link}">
+			<material>Gazebo/${color}</material>
+		</gazebo>
+	</xacro:macro>
+
+	<gazebo>
+		<!-- Gazebo plugin for ROS Control -->
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> </plugin>
+		
+		<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+			<alwaysOn>true</alwaysOn>
+			<updateRate>50.0</updateRate>
+			<leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
+			<rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
+			<leftRearJoint>left_back_wheel_joint</leftRearJoint>
+			<rightRearJoint>right_back_wheel_joint</rightRearJoint>
+			<wheelSeparation>${2.0*baselen/3.0}</wheelSeparation>
+			<wheelDiameter>${wheeldiam}</wheelDiameter>
+			<torque>20</torque>
+			<broadcastTF>1</broadcastTF>
+			<odometryFrame>map</odometryFrame>
+			<commandTopic>cmd_vel</commandTopic>
+			<odometryTopic>odom</odometryTopic>
+			<robotBaseFrame>base_footprint</robotBaseFrame>
+		</plugin>
+	</gazebo>
+</robot>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="leg" params="name parent_link prefix reflect">
+
+		<link name="${prefix}_leg">
+			<visual>
+				<geometry>
+					<box size="${leglen} .1 .2"/>
+				</geometry>
+				<origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
+				<material name="White"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${leglen} .1 .2"/>
+				</geometry>
+				<origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
+			</collision>
+			<xacro:default_inertial mass="10"/>
+		</link>
+		<xacro:gazebo_material link="${prefix}_leg" color="White"/>
+
+		<link name="${prefix}_leg_base">
+			<visual>
+				<geometry>
+					<box size="${baselen} ${basewidth} ${basewidth}"/>
+				</geometry>
+				<material name="White"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${baselen} ${basewidth} ${basewidth}"/>
+				</geometry>
+			</collision>
+			<xacro:default_inertial mass="10"/>
+		</link>
+		<xacro:gazebo_material link="${prefix}_leg_base" color="White"/>
+
+		<joint name="${parent_link}_${prefix}_leg_joint" type="fixed">
+			<parent link="${parent_link}"/>
+			<child link="${prefix}_leg"/>
+			<origin xyz="0 ${reflect*(torsowidth+.02)} .25" />
+		</joint>
+
+		<joint name="${prefix}_leg_leg_base_joint" type="fixed">
+			<parent link="${prefix}_leg"/>
+			<child link="${prefix}_leg_base"/>
+			<origin xyz="0 0 ${-leglen}" />
+		</joint>
+		
+		<xacro:wheel name="wheel" prefix="${prefix}" suffix="front" reflect="1"/>
+		<xacro:wheel name="wheel" prefix="${prefix}" suffix="back" reflect="-1"/>
+
+	</xacro:macro>
+
+</robot>

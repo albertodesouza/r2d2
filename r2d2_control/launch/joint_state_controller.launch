@@ -1,0 +1,15 @@
+<launch>
+
+	<rosparam file="$(find r2d2_control)/config/joint_state.yaml" command="load"/>
+
+	<node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" args="joint_state_controller 
+					r2d2_head_controller
+					r2d2_gripper_pole_controller
+					r2d2_left_gripper_finger_controller
+					r2d2_right_gripper_finger_controller" />
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  	
+		respawn="false" output="screen">
+	</node>
+</launch>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.gazebo.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.materials.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.inertia.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.head.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.leg.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.wheel.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.gripper.xacro" />
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.gripper_finger.xacro" />
+
+	<xacro:property name="torsowidth" value=".2" />
+	<xacro:property name="leglen" value=".6" />
+	<xacro:property name="polelen" value=".2" />
+	<xacro:property name="torsolen" value=".6" />
+	<xacro:property name="baselen" value=".4" />
+	<xacro:property name="basewidth" value=".1" />
+	<xacro:property name="wheeldiam" value=".07" />
+	<xacro:property name="pi" value="3.1415" />
+
+	<xacro:macro name="r2d2_structure" params="name parent_link">	
+
+		<link name="torso">
+			<visual>
+				<geometry>
+					<cylinder radius="${torsowidth}" length="${torsolen}"/>
+				</geometry>
+				<material name="Blue"/>
+			</visual>
+			<collision>
+				<geometry>
+					<cylinder radius="${torsowidth}" length="${torsolen}"/>
+				</geometry>
+			</collision>
+	 		<xacro:default_inertial mass="10"/>
+		</link>
+		<xacro:gazebo_material link="torso" color="Blue"/>
+
+		<joint name="${parent_link}_torso_joint" type="fixed">
+			<origin xyz="0 0 ${torsolen/2.0 + basewidth + wheeldiam}" rpy="0 0 0" />
+			<parent link="${parent_link}" />
+			<child link="torso" />
+		</joint>
+
+		<xacro:head name="head" parent_link="torso" />
+
+		<xacro:leg name="leg" parent_link="torso" prefix="right" reflect="-1" />
+		<xacro:leg name="leg" parent_link="torso" prefix="left" reflect="1" />
+
+		<xacro:gripper name="gripper" parent_link="torso" />
+
+	</xacro:macro>
+
+</robot>

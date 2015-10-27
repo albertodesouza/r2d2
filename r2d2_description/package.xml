@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>r2d2_description</name>
+  <version>0.0.1</version>
+  <description>The r2d2_description package</description>
+
+  <maintainer email="alberto@lcad.inf.ufes.br">alberto</maintainer>
+
+  <license>BSD</license>
+
+  <!-- <url type="repository">https://github.com/albertodesouza/r2d2</url> -->
+  <author email="alberto@lcad.inf.ufes.br">Alberto Ferreira De Souza</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>xacro</run_depend>
+
+  <export>
+  </export>
+</package>

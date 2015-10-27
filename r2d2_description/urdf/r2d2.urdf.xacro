@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="r2d2">
+	<!--
+		This file loads a basic visualization of r2d2 and its structure
+ 	-->	 	
+	<xacro:include filename="$(find r2d2_description)/urdf/r2d2.structure.xacro" />
+
+	<link name="base_footprint" />
+	<link name="base_link" />	
+
+	<joint name="base_footprint_base_link_joint" type="fixed">
+		<parent link="base_footprint"/>
+		<child link="base_link"/>
+	</joint>
+
+	<xacro:r2d2_structure name="r2d2_structure" parent_link="base_link"/>
+
+</robot>
+
