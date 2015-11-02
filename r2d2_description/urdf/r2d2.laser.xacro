@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="laser" params="name parent_link">
+
+		<!-- Hokuyo Laser -->
+		<link name="hokuyo_link">
+			<visual>
+				<geometry>
+					<mesh filename="package://rrbot_description/meshes/hokuyo.dae"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="0.1 0.1 0.1"/>
+				</geometry>
+			</collision>
+			<xacro:default_inertial mass="0.5"/>
+		</link>
+
+		<joint name="hokuyo_joint" type="fixed">
+			<parent link="${parent_link}"/>
+			<child link="hokuyo_link"/>
+			<axis xyz="1 0 0" />
+			<origin xyz="${torsowidth} 0 0" rpy="0 0 0"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>
