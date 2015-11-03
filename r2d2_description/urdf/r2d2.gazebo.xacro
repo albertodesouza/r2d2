@@ -25,9 +25,9 @@
 			<wheelDiameter>${wheeldiam}</wheelDiameter>
 			<torque>20</torque>
 			<broadcastTF>1</broadcastTF>
-			<odometryFrame>map</odometryFrame>
+			<odometryFrame>odom</odometryFrame>
 			<commandTopic>cmd_vel</commandTopic>
-			<odometryTopic>r2d2/odom</odometryTopic>
+			<odometryTopic>/odom</odometryTopic>
 			<robotBaseFrame>base_link</robotBaseFrame>
 		</plugin>
 	</gazebo>
@@ -63,7 +63,7 @@
 				</noise>
 			</ray>
 			<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
-				<topicName>/r2d2/laser/scan</topicName>
+				<topicName>/scan</topicName>
 				<frameName>hokuyo_link</frameName>
 			</plugin>
 		</sensor>

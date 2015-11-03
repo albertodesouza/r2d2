@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">	
+	<world name="default">
+		<physics type="simbody">
+			<simbody>
+				<accuracy>0.001</accuracy>
+			</simbody>
+			<real_time_update_rate>1000</real_time_update_rate>
+			<gravity>0 0 -9.8</gravity>
+		</physics>
+		<include>
+			<uri>model://ground_plane</uri>
+		</include>
+
+		<!-- Office (Willowgarage) -->
+		<include>
+			<uri>model://willowgarage</uri>
+		</include>
+
+		<!-- Global light source -->
+		<include>
+			<uri>model://sun</uri>
+		</include>
+
+
+		<gui fullscreen='0'>
+			<camera name='user_camera'>
+				<pose>16.2107 -11.6026 49.9767 0 1.27964 2.08419</pose>
+				<view_controller>orbit</view_controller>
+			</camera>
+		</gui>
+	</world>
+</sdf>

@@ -18,6 +18,10 @@ To run only in rviz:
 
 `roslaunch r2d2_description r2d2_publisher.launch`
 
+To examine in rviz while simulating:
+
+`rosrun rviz rviz -d src/r2d2/r2d2_description/rviz/r2d2_description.rviz`
+
 
 ## Joystick control
 
@@ -46,11 +50,11 @@ Then, walk the robot around to scan the environment. After that, stop everything
 ```
 roscore
 rosparam set use_sim_time true
-rosrun gmapping slam_gmapping scan:=/r2d2/laser/scan _odom_frame:=/r2d2/odom
+rosrun gmapping slam_gmapping scan:=/r2d2/laser/scan _odom_frame:=/r2d2/odom _xmin:=-5.0 _xmax:=5.0 _ymin:=-5.0 _ymax:=5.0 _delta:=0.05
 rosbag play --clock <name of the bag the you created above >
 ```
 
-Wait for rosbag to finish and exit. Save your new map to disk using map_saver from the map_server package: 
+(You can check the meaning of the gmapping parameters at http://wiki.ros.org/gmapping). Wait for rosbag to finish and exit. Save your new map to disk using map_saver from the map_server package: 
 
 `rosrun map_server map_saver`
 
