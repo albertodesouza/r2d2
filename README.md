@@ -18,6 +18,9 @@ To run only in rviz:
 
 `roslaunch r2d2_description r2d2_publisher.launch`
 
+
+## Joystick control
+
 To control via joystick (teleop) install https://github.com/ros-teleop/teleop_twist_joy
 
 ```
@@ -31,6 +34,8 @@ Change it appropriately (launch file to use the xbox joy instead of ps3 and conf
 
 `roslaunch teleop_twist_joy teleop.launch`
 
+
+## Building a map
 
 To build a map, run the model, run the teleop control and start saving messages in a bag:
 
