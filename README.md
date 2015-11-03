@@ -20,10 +20,12 @@ To run only in rviz:
 
 To control via joystick (teleop) install https://github.com/ros-teleop/teleop_twist_joy
 
-`cd ~/catkin_ws/src`
-`git clone https://github.com/ros-teleop/teleop_twist_joy.git`
-`cd ..`
-`catkin_make`
+```
+cd ~/catkin_ws/src
+git clone https://github.com/ros-teleop/teleop_twist_joy.git
+cd ..
+catkin_make
+```
 
 Change it appropriately (launch file to use the xbox joy instead of ps3 and config file to send proper maximums) and run:
 
@@ -36,10 +38,12 @@ To build a map, run the model, run the teleop control and start saving messages 
 
 Then, walk the robot around to scan the environment. After that, stop everything and (http://wiki.ros.org/slam_gmapping/Tutorials/MappingFromLoggedData):
 
-`roscore`
-`rosparam set use_sim_time true`
-`rosrun gmapping slam_gmapping scan:=/r2d2/laser/scan _odom_frame:=/r2d2/odom`
-`rosbag play --clock <name of the bag the you created above >`
+```
+roscore
+rosparam set use_sim_time true
+rosrun gmapping slam_gmapping scan:=/r2d2/laser/scan _odom_frame:=/r2d2/odom
+rosbag play --clock <name of the bag the you created above >
+```
 
 Wait for rosbag to finish and exit. Save your new map to disk using map_saver from the map_server package: 
 
