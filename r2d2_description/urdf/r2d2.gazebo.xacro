@@ -27,8 +27,8 @@
 			<broadcastTF>1</broadcastTF>
 			<odometryFrame>map</odometryFrame>
 			<commandTopic>cmd_vel</commandTopic>
-			<odometryTopic>odom</odometryTopic>
-			<robotBaseFrame>base_footprint</robotBaseFrame>
+			<odometryTopic>r2d2/odom</odometryTopic>
+			<robotBaseFrame>base_link</robotBaseFrame>
 		</plugin>
 	</gazebo>
 

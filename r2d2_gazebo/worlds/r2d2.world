@@ -5,6 +5,8 @@
 			<simbody>
 				<accuracy>0.001</accuracy>
 			</simbody>
+			<real_time_update_rate>1000</real_time_update_rate>
+			<gravity>0 0 -9.8</gravity>
 		</physics>
 		<include>
 			<uri>model://ground_plane</uri>
