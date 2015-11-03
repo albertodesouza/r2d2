@@ -58,4 +58,14 @@ rosbag play --clock <name of the bag the you created above >
 
 `rosrun map_server map_saver`
 
+## Navigation
+
+To navigate the map:
+
+```
+roslaunch r2d2_bringup bringup_office.launch
+roslaunch r2d2_navigation move_base.launch
+rosrun rviz rviz -d src/r2d2/r2d2_navigation/rviz/navigation.rviz
+```
+
 
