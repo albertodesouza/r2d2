@@ -19,7 +19,7 @@
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 			</collision>
-			<xacro:default_inertial mass="1"/>
+			<xacro:default_inertial mass="2"/>
 		</link>
 		<xacro:gazebo_material link="${prefix}_${suffix}_wheel" color="Black"/>
 

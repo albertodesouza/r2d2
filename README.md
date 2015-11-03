@@ -68,4 +68,4 @@ roslaunch r2d2_navigation move_base.launch
 rosrun rviz rviz -d src/r2d2/r2d2_navigation/rviz/navigation.rviz
 ```
 
-
+Learn more about using the ROS navigation stack at http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack

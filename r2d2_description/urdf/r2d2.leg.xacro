@@ -17,7 +17,7 @@
 				</geometry>
 				<origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
 			</collision>
-			<xacro:default_inertial mass="10"/>
+			<xacro:default_inertial mass="2"/>
 		</link>
 		<xacro:gazebo_material link="${prefix}_leg" color="White"/>
 
@@ -33,7 +33,7 @@
 					<box size="${baselen} ${basewidth} ${basewidth}"/>
 				</geometry>
 			</collision>
-			<xacro:default_inertial mass="10"/>
+			<xacro:default_inertial mass="20"/>
 		</link>
 		<xacro:gazebo_material link="${prefix}_leg_base" color="White"/>
 
